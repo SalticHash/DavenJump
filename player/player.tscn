@@ -1,3 +1,81 @@
 [gd_scene format=3 uid="uid://big2h4gg0wug4"]
 
+[ext_resource type="Texture2D" uid="uid://owr4aoshg1ni" path="res://player/player.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://d04gs868bsx0" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://bykc6s2cpoblj" path="res://player/fall1.png" id="3_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://dbjy2uplik1yf" path="res://player/fall2.png" id="4_boad6"]
+[ext_resource type="Texture2D" uid="uid://by3mg3ougqi53" path="res://player/jump1.png" id="5_rgyib"]
+[ext_resource type="Texture2D" uid="uid://bavwmunh5f63l" path="res://player/jump2.png" id="6_hg6s5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh3y0"]
+size = Vector2(84, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh3y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_g6k8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_boad6")
+}],
+"loop": 0,
+"name": &"fall",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rgyib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hg6s5")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 12.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=983998803]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_rkbax")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=722215934]
+z_index = -1
+texture = ExtResource("1_oul6g")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=96935867]
+shape = SubResource("RectangleShape2D_jh3y0")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1578970001]
+
+[node name="Control" type="Control" parent="UI" unique_id=518409377]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CoinCount" type="Label" parent="UI/Control" unique_id=636477657]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 85.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Coins: 0"
+
+[node name="Feet" type="AnimatedSprite2D" parent="." unique_id=858099949]
+z_index = 1
+position = Vector2(3, 36)
+sprite_frames = SubResource("SpriteFrames_jh3y0")
+animation = &"fall"
+
+[node name="Camera" type="Camera2D" parent="." unique_id=294538926]
+process_callback = 0
+limit_left = 0
+limit_right = 324
+limit_bottom = 576

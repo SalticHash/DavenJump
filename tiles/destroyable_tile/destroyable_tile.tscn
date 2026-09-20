@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cnt5yedhd15f0"]
+
+[ext_resource type="Script" uid="uid://ck8fko8tu2hlu" path="res://tiles/destroyable_tile/destroyable_tile.gd" id="1_tyrle"]
+[ext_resource type="Texture2D" uid="uid://c77qbuws7ovco" path="res://tiles/destroyable_tile/1.png" id="2_rx2o7"]
+[ext_resource type="Texture2D" uid="uid://b1yh4uv43u8oh" path="res://tiles/destroyable_tile/2.png" id="3_t01oc"]
+[ext_resource type="Texture2D" uid="uid://bbq8uexn8kud1" path="res://tiles/destroyable_tile/3.png" id="4_k6i6b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh3y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rx2o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t01oc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k6i6b")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"break",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5hoy"]
+size = Vector2(116, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh3y0"]
+size = Vector2(104, 4)
+
+[node name="DestroyableTile" type="StaticBody2D" unique_id=682643957]
+collision_mask = 0
+script = ExtResource("1_tyrle")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1626360158]
+sprite_frames = SubResource("SpriteFrames_jh3y0")
+animation = &"break"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=906184696]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_c5hoy")
+one_way_collision = true
+
+[node name="StepArea" type="Area2D" parent="." unique_id=1544339657]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="StepArea" unique_id=545741909]
+position = Vector2(-1, -6)
+shape = SubResource("RectangleShape2D_jh3y0")
+
+[node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=953030852]
+
+[connection signal="screen_exited" from="OnScreen" to="." method="_screen_exited"]

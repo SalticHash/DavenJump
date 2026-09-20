@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://cllwa3j8jcoya"]
 
+[ext_resource type="Texture2D" uid="uid://dftlydoprw0p7" path="res://tiles/tile/tile.png" id="1_l3bbq"]
+[ext_resource type="Script" uid="uid://m8nmamsqjhkm" path="res://tiles/tile/tile.gd" id="1_l782x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh3y0"]
+size = Vector2(116, 11)
+
 [node name="Tile" type="StaticBody2D" unique_id=1899603850]
+collision_mask = 0
+script = ExtResource("1_l782x")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=571833320]
+texture = ExtResource("1_l3bbq")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=242756441]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_jh3y0")
+one_way_collision = true
+
+[node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=395219857]
+
+[connection signal="screen_exited" from="OnScreen" to="." method="_screen_exited"]

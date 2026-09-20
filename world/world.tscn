@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://c5wfefv8u5vbu"]
 
+[ext_resource type="Texture2D" uid="uid://cay5bqh5xhumn" path="res://world/bg.png" id="1_4717r"]
+[ext_resource type="Script" uid="uid://b0b3gbvmxhipn" path="res://world/world.gd" id="1_h5o24"]
+[ext_resource type="PackedScene" uid="uid://cllwa3j8jcoya" path="res://tiles/tile/tile.tscn" id="2_h5o24"]
+[ext_resource type="PackedScene" uid="uid://big2h4gg0wug4" path="res://player/player.tscn" id="3_mmdvd"]
+
 [node name="World" type="Node2D" unique_id=104378226]
+script = ExtResource("1_h5o24")
+
+[node name="BG" type="Parallax2D" parent="." unique_id=717486844]
+z_index = -10
+repeat_size = Vector2(0, 576)
+repeat_times = 2
+
+[node name="Sprite" type="Sprite2D" parent="BG" unique_id=1629114808]
+texture = ExtResource("1_4717r")
+centered = false
+
+[node name="Player" parent="." unique_id=983998803 instance=ExtResource("3_mmdvd")]
+position = Vector2(162, 494)
+
+[node name="Tiles" type="Node2D" parent="." unique_id=743855343]
+
+[node name="Tile" parent="Tiles" unique_id=1899603850 instance=ExtResource("2_h5o24")]
+position = Vector2(162, 536)
