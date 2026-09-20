@@ -7,3 +7,9 @@
 
 [node name="JumpPad" parent="." index="2" unique_id=41173888 instance=ExtResource("2_sfsq7")]
 position = Vector2(0, -4)
+
+[node name="OnScreen" parent="." index="3" unique_id=395219857]
+rect = Rect2(-63, -94, 126, 113)
+
+[node name="Coin" parent="." index="4" unique_id=1998461412]
+position = Vector2(0, -144)

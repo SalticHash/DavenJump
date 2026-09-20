@@ -6,6 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://dbjy2uplik1yf" path="res://player/fall2.png" id="4_boad6"]
 [ext_resource type="Texture2D" uid="uid://by3mg3ougqi53" path="res://player/jump1.png" id="5_rgyib"]
 [ext_resource type="Texture2D" uid="uid://bavwmunh5f63l" path="res://player/jump2.png" id="6_hg6s5"]
+[ext_resource type="AudioStream" uid="uid://bv8pe5ghbdb4m" path="res://player/sounds/land/land1.wav" id="7_8t03j"]
+[ext_resource type="AudioStream" uid="uid://bi2g1aose6q7d" path="res://player/sounds/land/land2.wav" id="8_2ieo8"]
+[ext_resource type="AudioStream" uid="uid://buasfubprpac2" path="res://player/sounds/land/land3.wav" id="9_ebec5"]
+[ext_resource type="AudioStream" uid="uid://deyxa3u648xl4" path="res://player/sounds/land/land4.wav" id="10_yllr7"]
+[ext_resource type="AudioStream" uid="uid://bbxqgb2lk3yin" path="res://player/sounds/collect/collect1.wav" id="11_yllr7"]
+[ext_resource type="AudioStream" uid="uid://c5tndx5in8rfv" path="res://player/sounds/collect/collect2.wav" id="12_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://b5iay27nvyavp" path="res://player/sounds/collect/collect3.wav" id="13_wodsf"]
+[ext_resource type="AudioStream" uid="uid://doc14honoi5k0" path="res://player/sounds/bounce/bounce1.wav" id="14_wodsf"]
+[ext_resource type="AudioStream" uid="uid://dy7b3q82mowho" path="res://player/sounds/bounce/bounce2.wav" id="15_32hag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh3y0"]
 size = Vector2(84, 74)
@@ -35,13 +44,34 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jh3y0"]
+random_volume_offset_db = 2.0
+streams_count = 4
+stream_0/stream = ExtResource("7_8t03j")
+stream_1/stream = ExtResource("8_2ieo8")
+stream_2/stream = ExtResource("9_ebec5")
+stream_3/stream = ExtResource("10_yllr7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_32hag"]
+random_pitch = 1.122462
+streams_count = 3
+stream_0/stream = ExtResource("11_yllr7")
+stream_1/stream = ExtResource("12_kb6p2")
+stream_2/stream = ExtResource("13_wodsf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tqiix"]
+random_pitch = 1.122462
+streams_count = 2
+stream_0/stream = ExtResource("14_wodsf")
+stream_1/stream = ExtResource("15_32hag")
+
 [node name="Player" type="CharacterBody2D" unique_id=983998803]
+z_index = 2
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_rkbax")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=722215934]
-z_index = -1
 texture = ExtResource("1_oul6g")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=96935867]
@@ -68,8 +98,81 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Coins: 0"
 
+[node name="Lost" type="VBoxContainer" parent="UI/Control" unique_id=618855073]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -29.0
+offset_right = 43.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Control/Lost" unique_id=1664117793]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "You lost!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScore" type="Label" parent="UI/Control/Lost" unique_id=39978882]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Last high score: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI/Control/Lost" unique_id=1815111077]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play again"
+
+[node name="Controls" type="HBoxContainer" parent="UI/Control" unique_id=1955000775]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -84.0
+offset_right = 144.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Left" type="Button" parent="UI/Control/Controls" unique_id=322264108]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "◀"
+
+[node name="VSeparator" type="VSeparator" parent="UI/Control/Controls" unique_id=729059620]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="Right" type="Button" parent="UI/Control/Controls" unique_id=1572519259]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "▶"
+
 [node name="Feet" type="AnimatedSprite2D" parent="." unique_id=858099949]
-z_index = 1
 position = Vector2(3, 36)
 sprite_frames = SubResource("SpriteFrames_jh3y0")
 animation = &"fall"
@@ -79,3 +182,16 @@ process_callback = 0
 limit_left = 0
 limit_right = 324
 limit_bottom = 576
+
+[node name="Land" type="AudioStreamPlayer" parent="." unique_id=968860660]
+stream = SubResource("AudioStreamRandomizer_jh3y0")
+volume_db = 20.0
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="." unique_id=2117941739]
+stream = SubResource("AudioStreamRandomizer_32hag")
+
+[node name="BounceSound" type="AudioStreamPlayer" parent="." unique_id=1360697353]
+stream = SubResource("AudioStreamRandomizer_tqiix")
+pitch_scale = 1.2
+
+[connection signal="pressed" from="UI/Control/Lost/RestartButton" to="." method="_on_restart_button_pressed"]

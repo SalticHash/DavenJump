@@ -1,12 +1,65 @@
 [gd_scene format=3 uid="uid://s6f1t6nlhpby"]
 
+[ext_resource type="Script" uid="uid://ddkp7hf2qcvsu" path="res://jump_pad/jump_pad.gd" id="1_2mjfl"]
+[ext_resource type="Texture2D" uid="uid://doglx67d2osek" path="res://jump_pad/spring.png" id="1_ykeur"]
+[ext_resource type="Texture2D" uid="uid://dblwl1eeb6f2f" path="res://jump_pad/pad.png" id="2_2mjfl"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh3y0"]
+size = Vector2(104, 58)
+
+[sub_resource type="Animation" id="Animation_mj7xp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pad:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(-17, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_eth0y"]
+resource_name = "bounce"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pad:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-17, -0.0005, 0, 0.0005, 0, -52.510998, -0.06666666, 0.3713112, 0.03333334, 0.006160736, -49.099632, -0.033333335, -0.23420715, 0.03333333, 0.05987549, -50.628864, 0, 0, 0, 0, -51.8052, -0.017159656, -0.069812775, 0.040606022, 0.058818817, -50.481823, 0, 0, 0, 0, -49.423122, -0.017159656, -0.069812775, 0.040606022, 0.058818817, -50.099514, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.06799874, 0.13399936, 0.1669997, 0.19000944, 0.24943101, 0.2930565, 0.34099707)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mj7xp"]
+_data = {
+&"RESET": SubResource("Animation_mj7xp"),
+&"bounce": SubResource("Animation_eth0y")
+}
 
 [node name="JumpPad" type="Area2D" unique_id=41173888]
 collision_layer = 8
 collision_mask = 2
+script = ExtResource("1_2mjfl")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1729179300]
+[node name="Spring" type="Sprite2D" parent="." unique_id=1729179300]
+position = Vector2(0, -21)
+texture = ExtResource("1_ykeur")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648056051]
+[node name="Pad" type="Sprite2D" parent="." unique_id=1021895003]
+z_index = 1
+position = Vector2(2, -17)
+texture = ExtResource("2_2mjfl")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=648056051]
+position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_jh3y0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1393940977]
+libraries/ = SubResource("AnimationLibrary_mj7xp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
