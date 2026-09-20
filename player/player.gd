@@ -23,9 +23,15 @@ func _physics_process(delta: float) -> void:
 	if global_position.y - 37.0 > $Camera.limit_bottom:
 		lost = true
 		%Lost.show()
-		if Global.last_coins == -1 or Global.last_coins == coins: %HighScore.hide()
-		%HighScore.text = "New high score!" if coins > Global.last_coins \
-			else "High score: " + str(Global.last_coins)
+		if Global.last_coins == -1 or Global.last_coins == coins: 
+			%HighScore.hide()
+		else:
+			if coins > Global.last_coins:
+				$HighScoreMusic.play()
+				%HighScore.text = "New high score!"
+			else:
+				$LooseMusic.play()
+				%HighScore.text = "High score: " + str(Global.last_coins)
 		Global.last_coins = coins
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY

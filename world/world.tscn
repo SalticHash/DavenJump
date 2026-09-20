@@ -1,20 +1,36 @@
 [gd_scene format=3 uid="uid://c5wfefv8u5vbu"]
 
-[ext_resource type="Texture2D" uid="uid://cay5bqh5xhumn" path="res://world/bg.png" id="1_4717r"]
 [ext_resource type="Script" uid="uid://b0b3gbvmxhipn" path="res://world/world.gd" id="1_h5o24"]
 [ext_resource type="PackedScene" uid="uid://cllwa3j8jcoya" path="res://tiles/tile/tile.tscn" id="2_h5o24"]
+[ext_resource type="Texture2D" uid="uid://cf07a0sbbbh17" path="res://world/bg2.png" id="2_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://big2h4gg0wug4" path="res://player/player.tscn" id="3_mmdvd"]
+[ext_resource type="AudioStream" uid="uid://cn5vvdt35d3n7" path="res://world/music.wav" id="5_mmdvd"]
 
 [node name="World" type="Node2D" unique_id=104378226]
 script = ExtResource("1_h5o24")
 
-[node name="BG" type="Parallax2D" parent="." unique_id=717486844]
+[node name="BG2" type="Parallax2D" parent="." unique_id=235896777]
+modulate = Color(1, 1, 1, 0.15294118)
 z_index = -10
-repeat_size = Vector2(0, 576)
-repeat_times = 2
+scroll_scale = Vector2(1, 0.038)
+repeat_size = Vector2(260, 297.37)
+autoscroll = Vector2(6.4, 3.2)
+repeat_times = 5
+
+[node name="Sprite" type="Sprite2D" parent="BG2" unique_id=248003624]
+texture = ExtResource("2_mmdvd")
+centered = false
+
+[node name="BG" type="Parallax2D" parent="." unique_id=717486844]
+modulate = Color(1, 1, 1, 0.46666667)
+z_index = -10
+scroll_scale = Vector2(1, 0.1)
+repeat_size = Vector2(260, 227.61)
+autoscroll = Vector2(16, 8)
+repeat_times = 5
 
 [node name="Sprite" type="Sprite2D" parent="BG" unique_id=1629114808]
-texture = ExtResource("1_4717r")
+texture = ExtResource("2_mmdvd")
 centered = false
 
 [node name="Player" parent="." unique_id=983998803 instance=ExtResource("3_mmdvd")]
@@ -24,3 +40,8 @@ position = Vector2(162, 494)
 
 [node name="Tile" parent="Tiles" unique_id=1899603850 instance=ExtResource("2_h5o24")]
 position = Vector2(162, 536)
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1514934028]
+stream = ExtResource("5_mmdvd")
+volume_db = 5.0
+autoplay = true

@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://b5iay27nvyavp" path="res://player/sounds/collect/collect3.wav" id="13_wodsf"]
 [ext_resource type="AudioStream" uid="uid://doc14honoi5k0" path="res://player/sounds/bounce/bounce1.wav" id="14_wodsf"]
 [ext_resource type="AudioStream" uid="uid://dy7b3q82mowho" path="res://player/sounds/bounce/bounce2.wav" id="15_32hag"]
+[ext_resource type="AudioStream" uid="uid://63fupkg86tys" path="res://player/sounds/loose.wav" id="16_tqiix"]
+[ext_resource type="AudioStream" uid="uid://digshlu0ubkmd" path="res://player/sounds/high_score.wav" id="17_e7oew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh3y0"]
 size = Vector2(84, 74)
@@ -193,5 +195,11 @@ stream = SubResource("AudioStreamRandomizer_32hag")
 [node name="BounceSound" type="AudioStreamPlayer" parent="." unique_id=1360697353]
 stream = SubResource("AudioStreamRandomizer_tqiix")
 pitch_scale = 1.2
+
+[node name="LooseMusic" type="AudioStreamPlayer" parent="." unique_id=894227882]
+stream = ExtResource("16_tqiix")
+
+[node name="HighScoreMusic" type="AudioStreamPlayer" parent="." unique_id=686808929]
+stream = ExtResource("17_e7oew")
 
 [connection signal="pressed" from="UI/Control/Lost/RestartButton" to="." method="_on_restart_button_pressed"]

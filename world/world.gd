@@ -10,8 +10,8 @@ var height: float = 536.0
 var height_int = 150.0
 var move_chance: float = 0.25
 var speed_mul: float = 1.0
-func _process(delta: float) -> void:
-	t += delta
+func _process(_delta: float) -> void:
+	$Music.pitch_scale = remap(move_chance, 0.25, 0.9, 1.0, 4.0)
 	if height > $Player.global_position.y - 288 - height_int * 2:
 		t = 0.0
 		height -= height_int
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 			inst.speed = randf_range(32, 128) * speed_mul
 			inst.move = true 
 			speed_mul += 0.05
-		move_chance = min(move_chance + 0.008, 0.8)
+		move_chance = min(move_chance + 0.008, 0.9)
 		if inst.name == "JumpPadTile": height_int = 2000
 		inst.global_position = Vector2(randf_range(58, 266), height)
 		$Tiles.add_child(inst)

@@ -3,7 +3,7 @@ extends Tile
 var health: int = 3
 
 func randomize_health(move_chance: float):
-	health = snappedi(remap(move_chance, 0.25, 0.8, 3, 1), 1)
+	health = snappedi(remap(move_chance, 0.25, 0.9, 3, 1), 1)
 
 func _ready() -> void:
 	$Sprite.animation = "break"
