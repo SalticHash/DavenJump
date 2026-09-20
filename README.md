@@ -1,4 +1,4 @@
-# DoodleJump
+# Doodle Jump
 > A Haven themed, Doodle Jump​ inspired platformer​
 
 ​Collect coins and get high scores!
