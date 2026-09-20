@@ -12,7 +12,7 @@ var move_chance: float = 0.25
 var speed_mul: float = 1.0
 func _process(_delta: float) -> void:
 	$Music.pitch_scale = remap(move_chance, 0.25, 0.9, 1.0, 4.0)
-	if height > $Player.global_position.y - 288 - height_int * 2:
+	if height > $Player.global_position.y - get_viewport().get_visible_rect().size.y / 2.0 - height_int * 2:
 		t = 0.0
 		height -= height_int
 		if height_int == 2000: height_int = 150.0

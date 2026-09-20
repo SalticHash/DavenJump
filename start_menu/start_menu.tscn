@@ -21,7 +21,7 @@ z_index = -10
 scroll_scale = Vector2(1, 0.038)
 repeat_size = Vector2(260, 297.37)
 autoscroll = Vector2(6.4, 3.2)
-repeat_times = 5
+repeat_times = 10
 
 [node name="Sprite" type="Sprite2D" parent="BG2" unique_id=1990191837]
 texture = ExtResource("2_unh8j")
@@ -33,7 +33,7 @@ z_index = -10
 scroll_scale = Vector2(1, 0.1)
 repeat_size = Vector2(260, 227.61)
 autoscroll = Vector2(16, 8)
-repeat_times = 5
+repeat_times = 10
 
 [node name="Sprite" type="Sprite2D" parent="BG3" unique_id=138707279]
 texture = ExtResource("2_unh8j")

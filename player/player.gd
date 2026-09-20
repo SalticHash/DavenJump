@@ -9,12 +9,10 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
 const GRAVITY = 2000.0
 
-func _ready() -> void:
-	if OS.get_name() == "Android" or OS.get_name() == "iOS": 
-		%Controls.show()
 var lost: bool = false
 func _physics_process(delta: float) -> void:
 	if lost: return
+	%Controls.visible = Global.touch
 	if global_position.x < -42.0:
 		global_position.x = 366.0
 	if global_position.x > 366.0:
