@@ -8,3 +8,5 @@
 **On PC:** `A/D` or `←/→` to move left and right. 
 
 **On Mobile:** Use the on-screen buttons to move left and right.
+
+[Itch.io Page](https://saltichash.itch.io/daven-jump)
